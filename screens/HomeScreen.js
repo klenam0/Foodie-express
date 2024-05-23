@@ -48,11 +48,12 @@ export default function HomeScreen() {
         {/* featured */}
         <View className="mt-5">
           {[featured, featured, featured].map((item, index) => {
+            console.log("Resturant ", item.restaurants);
             return (
               <FeaturedRow
                 key={index}
                 title={item.title}
-                resraurants={item.restaurants}
+                restaurants={item.restaurants}
                 description={item.description}
               />
             );

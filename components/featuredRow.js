@@ -17,7 +17,7 @@ export default function FeaturedRow({ title, description, restaurants }) {
           </Text>
         </TouchableOpacity>
       </View>
-      {/* <ScrollView
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
@@ -25,10 +25,10 @@ export default function FeaturedRow({ title, description, restaurants }) {
         }}
         className="overflow-visible py-5"
       >
-        {restaurants.map((restaurant, index) => {
+        {restaurants?.map((restaurant, index) => {
           return <RestaurantCard item={restaurant} key={index} />;
         })}
-      </ScrollView> */}
+      </ScrollView>
     </View>
   );
 }

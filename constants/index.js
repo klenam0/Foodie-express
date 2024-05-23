@@ -40,7 +40,7 @@ export const featured = {
     {
       id: 1,
       name: "Papa Jones",
-      image: require("../assets/images/pizzaIcon.png"),
+      image: require("../assets/restaurants/restaurant.jpg"),
       description: "Hot and Spicy",
       lng: 38.215602,
       lat: -85.5324269,
@@ -90,7 +90,7 @@ export const featured = {
     {
       id: 1,
       name: "Papa Jones",
-      image: require("../assets/images/pizzaIcon.png"),
+      image: require("../assets/restaurants/restaurant.jpg"),
       description: "Hot and Spicy",
       lng: 38.215602,
       lat: -85.5324269,
@@ -139,7 +139,7 @@ export const featured = {
     {
       id: 1,
       name: "Papa Jones",
-      image: require("../assets/images/pizzaIcon.png"),
+      image: require("../assets/restaurants/restaurant.jpg"),
       description: "Hot and Spicy",
       lng: 38.215602,
       lat: -85.5324269,
