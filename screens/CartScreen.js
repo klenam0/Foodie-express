@@ -68,8 +68,14 @@ export default function CartScreen() {
               </Text>
               <Text className="font-semibold text-base">${dishes.price}</Text>
               <TouchableOpacity
-                className="p-1 rounded-full"
-                style={{ backgroundColor: themeColors.bgColor(1) }}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 20,
+                  backgroundColor: themeColors.bgColor(1),
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
                 <Icon.Minus
                   strokeWidth={2}
@@ -82,6 +88,36 @@ export default function CartScreen() {
           );
         })}
       </ScrollView>
+      {/* totals */}
+
+      <View
+        style={{ backgroundColor: themeColors.bgColor(0.2) }}
+        className="p-6 px-8 rounded-t-3xl space-y-4"
+      >
+        <View className="flex-row justify-between">
+          <Text className="text-gray-700">Subtotal</Text>
+          <Text className="text-gray-700">$20</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Text className="text-gray-700">Delivery fee</Text>
+          <Text className="text-gray-700">$2</Text>
+        </View>
+        <View className="flex-row justify-between">
+          <Text className="text-gray-700 font-extrabold">Order Total</Text>
+          <Text className="text-gray-700 font-extrabold">$30</Text>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("OrderPreparing")}
+            style={{ backgroundColor: themeColors.bgColor(1) }}
+            className="p-3 rounded-full"
+          >
+            <Text className="text-white text-center font-bold text-lg">
+              Place Order
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
