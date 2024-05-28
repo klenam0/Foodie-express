@@ -6,9 +6,11 @@ import { featured } from "../constants";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectRestaurant } from "../slices/restaurantSlice";
 
 export default function CartScreen() {
-  const restaurants = featured.restaurants[0];
+  const restaurants = useSelector(selectRestaurant);
   const navigation = useNavigation();
   return (
     <SafeAreaView className="bg-white flex-1">
