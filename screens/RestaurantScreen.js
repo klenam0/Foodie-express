@@ -8,6 +8,7 @@ import CartIcon from "../components/CartIcon";
 import { StatusBar } from "expo-status-bar";
 import { useDispatch } from "react-redux";
 import { setRestaurant } from "../slices/restaurantSlice";
+import { urlFor } from "../sanity";
 
 export default function RestaurantScreen() {
   const { params } = useRoute();
@@ -15,7 +16,7 @@ export default function RestaurantScreen() {
   let item = params || {};
   const dispatch = useDispatch();
   useEffect(() => {
-    if (item && item.id) {
+    if (item && item._id) {
       dispatch(setRestaurant({ ...item }));
     }
   }, [item]);
@@ -25,7 +26,10 @@ export default function RestaurantScreen() {
       <StatusBar style="light" />
       <ScrollView>
         <View className="relative">
-          <Image className="w-full h-72" source={item.image} />
+          <Image
+            className="w-full h-72"
+            source={{ uri: urlFor(item.image).url() }}
+          />
           <TouchableOpacity
             onPress={() => {
               navigation.goBack();
@@ -51,7 +55,7 @@ export default function RestaurantScreen() {
                   <Text className="text-green-700">{item.stars} </Text>
                   <Text className="text-gray-700">
                     ({item.reviews} review) ·
-                    <Text className="font-semibold">{item.category}</Text>
+                    <Text className="font-semibold">{item?.type?.name}</Text>
                   </Text>
                 </Text>
               </View>

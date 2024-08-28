@@ -13,6 +13,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../slices/cartSlice";
+import { urlFor } from "../sanity";
 
 export default function CartScreen() {
   const restaurants = useSelector(selectRestaurant);
@@ -25,10 +26,10 @@ export default function CartScreen() {
 
   useEffect(() => {
     const items = cartItems.reduce((group, item) => {
-      if (group[item.id]) {
-        group[item.id].push(item);
+      if (group[item._id]) {
+        group[item._id].push(item);
       } else {
-        group[item.id] = [item];
+        group[item._id] = [item];
       }
       return group;
     }, {});
@@ -83,25 +84,24 @@ export default function CartScreen() {
           return (
             <View
               key={key}
-              className="flex-row item-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md"
+              className="flex-row items-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md"
             >
               <Text className="font-bold " style={{ color: themeColors.text }}>
                 {items.length} x
               </Text>
-              <Image className="h-14 w-14 rounded-full" source={dish.image} />
+              <Image
+                className="h-14 w-14 rounded-full"
+                source={{ uri: urlFor(dish.image).url() }}
+              />
               <Text className="flex-1 font-bold text-gray-700">
                 {dish.name}
               </Text>
               <Text className="font-semibold text-base">${dish.price}</Text>
               <TouchableOpacity
-                onPress={() => dispatch(removeFromCart({ id: dish.id }))}
+                onPress={() => dispatch(removeFromCart({ id: dish._id }))}
+                className="p-2 rounded-full"
                 style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 20,
                   backgroundColor: themeColors.bgColor(1),
-                  alignItems: "center",
-                  justifyContent: "center",
                 }}
               >
                 <Icon.Minus
