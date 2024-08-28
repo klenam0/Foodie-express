@@ -3,10 +3,11 @@ import React from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { useNavigation } from "@react-navigation/native";
+import { urlFor } from "../sanity";
 
 export default function RestaurantCard({ item }) {
   const navigation = useNavigation();
-
+  // console.log("Item: ", item);
   //   console.log(item);
   return (
     <TouchableWithoutFeedback
@@ -19,7 +20,10 @@ export default function RestaurantCard({ item }) {
         }}
         className="mr-6 bg-white rounded-3xl shadow-lg"
       >
-        <Image className="h-36 w-64 rounded-3xl" source={item.image} />
+        <Image
+          className="h-36 w-64 rounded-3xl"
+          source={{ uri: urlFor(item.image).url() }}
+        />
         <View className="px-3 pb-4 space-y-4">
           <Text className="text-lg font-bold pt-2">{item.name} </Text>
           <View className="flex-row items-center space-x-1">
@@ -31,7 +35,7 @@ export default function RestaurantCard({ item }) {
               <Text className="text-green-700">{item.stars} </Text>
               <Text className="text-gray-700">
                 ({item.reviews} review) ·
-                <Text className="font-semibold">{item.category}</Text>
+                <Text className="font-semibold">{item?.type?.name}</Text>
               </Text>
             </Text>
           </View>
