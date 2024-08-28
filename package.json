@@ -12,6 +12,8 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@reduxjs/toolkit": "^2.2.5",
+    "@sanity/client": "^6.21.3",
+    "@sanity/image-url": "^1.0.2",
     "expo": "~51.0.8",
     "expo-status-bar": "~1.12.1",
     "nativewind": "^2.0.11",
