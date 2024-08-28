@@ -71,8 +71,8 @@ export default function DeliveryScreen() {
           </View>
 
           <View className="flex-1 ml-3">
-            <Text className="text-lg font-bold text-white">Klenam Coder</Text>
-            <Text className="font-semibold text-white">Your rider</Text>
+            <Text className="text-lg font-bold text-white">Klenam Codes</Text>
+            <Text className="font-semibold text-white">Your Rider</Text>
           </View>
           <View className="flex-row items-center space-x-3 mr-3">
             <TouchableOpacity className="bg-white p-2 rounded-full">

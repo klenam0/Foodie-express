@@ -12,15 +12,13 @@ import { setRestaurant } from "../slices/restaurantSlice";
 export default function RestaurantScreen() {
   const { params } = useRoute();
   const navigation = useNavigation();
-  let item = params;
+  let item = params || {};
   const dispatch = useDispatch();
-  // console.log("Params ", params);
-  // console.log("restaurant: ", item);
   useEffect(() => {
     if (item && item.id) {
       dispatch(setRestaurant({ ...item }));
     }
-  }, []);
+  }, [item]);
   return (
     <View>
       <CartIcon />

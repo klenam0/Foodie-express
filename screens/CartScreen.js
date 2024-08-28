@@ -1,17 +1,39 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { featured } from "../constants";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../slices/restaurantSlice";
+import {
+  removeFromCart,
+  selectCartItems,
+  selectCartTotal,
+} from "../slices/cartSlice";
 
 export default function CartScreen() {
   const restaurants = useSelector(selectRestaurant);
   const navigation = useNavigation();
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
+  const [groupedItems, setGroupedItems] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const items = cartItems.reduce((group, item) => {
+      if (group[item.id]) {
+        group[item.id].push(item);
+      } else {
+        group[item.id] = [item];
+      }
+      return group;
+    }, {});
+    setGroupedItems(items);
+  }, [cartItems]);
+
   return (
     <SafeAreaView className="bg-white flex-1">
       {/* back button */}
@@ -55,21 +77,23 @@ export default function CartScreen() {
         }}
         className="bg-white pt-5"
       >
-        {restaurants.dishes.map((dishes, index) => {
+        {Object.entries(groupedItems).map(([key, items]) => {
+          let dish = items[0];
           return (
             <View
-              key={index}
+              key={key}
               className="flex-row item-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md"
             >
               <Text className="font-bold " style={{ color: themeColors.text }}>
-                2 x
+                {items.length} x
               </Text>
-              <Image className="h-14 w-14 rounded-full" source={dishes.image} />
+              <Image className="h-14 w-14 rounded-full" source={dish.image} />
               <Text className="flex-1 font-bold text-gray-700">
-                {dishes.name}
+                {dish.name}
               </Text>
-              <Text className="font-semibold text-base">${dishes.price}</Text>
+              <Text className="font-semibold text-base">${dish.price}</Text>
               <TouchableOpacity
+                onPress={() => dispatch(removeFromCart({ id: dish.id }))}
                 style={{
                   width: 30,
                   height: 30,

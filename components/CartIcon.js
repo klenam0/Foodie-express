@@ -7,10 +7,10 @@ import { selectCartItems, selectCartTotal } from "../slices/cartSlice";
 
 export default function CartIcon() {
   const navigation = useNavigation();
-  // const cartItems = useSelector(selectCartItems);
-  // const cartTotal = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
-  // if (!cartItems.length) return null;
+  if (!cartItems.length) return;
 
   return (
     <View className="absolute bottom-5 w-full z-50">
@@ -26,16 +26,13 @@ export default function CartIcon() {
           style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
         >
           <Text className="font-extrabold text-white text-lg">
-            {/* {cartItems.length} */}
-            {3}
+            {cartItems.length}
           </Text>
         </View>
         <Text className=" flex-1 text-center font-extrabold text-white text-lg">
           View Cart
         </Text>
-        <Text className="font-extrabold text-white text-lg">
-          {/* ${cartTotal} */} {3}
-        </Text>
+        <Text className="font-extrabold text-white text-lg">${cartTotal}</Text>
       </TouchableOpacity>
     </View>
   );
