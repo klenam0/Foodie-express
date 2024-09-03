@@ -26,7 +26,7 @@
 <img src="assets/screenshots/screenshot4.png" width="" height="450"> **4**
 <img src="assets/screenshots/screenshot5.png" width="" height="450"> **5**
 <img src="assets/screenshots/screenshot6.png" width="" height="450"> **6**
-<img src="assets/screenshots/screenshot1.png" width="" height="450"> **7**
+<img src="assets/screenshots/screenshot7.png" width="" height="450"> **7**
 <img src="assets/screenshots/screenshot8.png" width="" height="450"> **8**
 <img src="assets/screenshots/screenshot9.png" width="" height="450"> **9**
 
